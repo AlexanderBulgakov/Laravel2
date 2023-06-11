@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+//Route::view('/', 'home')->name('home');
 
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+//Route::view('/contact', 'contact')->name('contact');
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+//Route::view('/about', 'about')->name('about');
 
 Route::get('/blog', [PostController::class, 'index'])->name('blog');;
 Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
