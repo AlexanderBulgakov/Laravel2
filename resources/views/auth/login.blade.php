@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="w-full flex flex-wrap items-center justify-center">
         <!-- Session Status -->
         <x-auth-session-status class="w-full text-center mb-4" :status="session('status')" />
@@ -46,4 +46,4 @@
             </div>
         </form>
     </div>
-</x-app-layout>
+</x-guest-layout>

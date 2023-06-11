@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="w-full flex flex-wrap items-center justify-center">
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -51,4 +51,4 @@
             </div>
         </form>
     </div>
-</x-app-layout>
+</x-guest-layout>

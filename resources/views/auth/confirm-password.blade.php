@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="mb-4 text-sm text-center text-gray-600">
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
     </div>
@@ -25,4 +25,4 @@
             </div>
         </form>
     </div>
-</x-app-layout>
+</x-guest-layout>
