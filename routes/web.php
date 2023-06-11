@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,16 +28,15 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
+Route::get('/blog', [PostController::class, 'index'])->name('blog');;
+Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
 
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('posts', PostController::class);
+    Route::resource('posts', AdminPostController::class);
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
