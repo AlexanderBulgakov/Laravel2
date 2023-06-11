@@ -6,6 +6,9 @@
         <x-nav-sidebar-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('Posts') }}</x-nav-sidebar-link>
     </li>
     <li>
+        <x-nav-sidebar-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">{{ __('Add new post') }}</x-nav-sidebar-link>
+    </li>
+    <li>
         <x-nav-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">{{ __('Profile') }}</x-nav-sidebar-link>
     </li>
     <li>
