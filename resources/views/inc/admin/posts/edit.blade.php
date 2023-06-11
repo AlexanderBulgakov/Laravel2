@@ -26,6 +26,12 @@
                 </div>
 
                 <div>
+                    <x-input-label for="description" :value="__('Description (max:300)')" />
+                    <x-textarea id="description" name="description" class="mt-1 block w-full" required>{{ $post->description }}</x-textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                </div>
+
+                <div>
                     <x-input-label for="body" :value="__('Body')" />
                     <x-textarea id="body" name="body" class="mt-1 block w-full" required>{{ $post->body }}</x-textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('body')" />

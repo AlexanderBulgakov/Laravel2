@@ -12,6 +12,7 @@
     </div>
 
     <h1 class="block text-3xl font-bold my-4">{{ $post->title }}</h1>
+    <div class="mb-4 text-sm">{{ $post->description }}</div>
     <div class="mb-4">{{ $post->body }}</div>
 
     <form id="post-{{ $post->id }}" action="{{ route('posts.destroy', $post->id) }}" method="post" style="display:none;">

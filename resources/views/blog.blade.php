@@ -8,6 +8,7 @@
     @foreach($posts as $post)
         <article class="my-4">
             <h2 class="text-2xl font-bold pb-4"><a href="{{ route('blog.show', $post->id) }}" class="hover:underline">{{ $post->title }}</a></h2>
+            <p class="mb-4 text-sm">{{ $post->description }}</p>
         </article>
     @endforeach
 
