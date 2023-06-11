@@ -1,1 +1,0 @@
-{{ __("You're logged in!") }}
