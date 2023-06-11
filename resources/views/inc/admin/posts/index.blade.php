@@ -10,7 +10,7 @@
                 <th class="p-4 text-left">{{ __('Title') }}</th>
             </tr>
         </thead>
-        <tbody class="bg-white dark:bg-slate-800">
+        <tbody>
             @foreach($posts as $post)
                 <tr class="border-b border-gray-300">
                     <td class="p-4">{{ $post->id }}</td>
