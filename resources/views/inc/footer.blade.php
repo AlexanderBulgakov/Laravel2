@@ -5,5 +5,5 @@
         <x-nav-footer-link :href="route('about')" :active="request()->routeIs('about')">{{ __('About') }}</x-nav-footer-link>
         <x-nav-footer-link :href="route('contact')" :active="request()->routeIs('contact')">{{ __('Contact') }}</x-nav-footer-link>
     </div>
-    <div class="uppercase text-sm text-center mb-6">&copy; simple blog</div>
+    <div class="uppercase text-sm text-center mb-6">&copy; {{ config('app.name', 'Simple Blog') }}</div>
 </footer>
