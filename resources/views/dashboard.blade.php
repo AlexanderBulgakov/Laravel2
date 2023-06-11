@@ -1,17 +1,25 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <div class="flex flex-wrap items-start justify-center">
+        <aside class="w-full md:w-1/3">
+            <div class="w-full overflow-hidden p-4">
+                <div class="rounded-md border-2 border-gray-300 border-solid p-2">
+                    @include('inc.admin.sidebar-menu')
                 </div>
             </div>
-        </div>
+        </aside>
+        <section class="w-full md:w-2/3">
+            <div class="w-full overflow-hidden p-4">
+                <div class="rounded-md border-2 border-gray-300 border-solid p-2">
+                    @include('inc.admin.dashboard')
+                </div>
+            </div>
+        </section>
     </div>
+
 </x-app-layout>

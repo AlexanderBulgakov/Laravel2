@@ -5,25 +5,33 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
+    <div class="flex flex-wrap items-start justify-center">
+        <aside class="w-full md:w-1/3">
+            <div class="w-full overflow-hidden p-4">
+                <div class="rounded-md border-2 border-gray-300 border-solid p-2">
+                    @include('inc.admin.sidebar-menu')
                 </div>
             </div>
+        </aside>
+        <section class="w-full md:w-2/3">
+            <div class="w-full overflow-hidden p-4">
+                <div class="rounded-md border-2 border-gray-300 border-solid p-2">
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+                    <div class="p-4 border-b">
+                        @include('profile.partials.update-profile-information-form')
+                    </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                    <div class="p-4 border-b">
+                        @include('profile.partials.update-password-form')
+                    </div>
+
+                    <div class="p-4">
+                        @include('profile.partials.delete-user-form')
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+
 </x-app-layout>
