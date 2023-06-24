@@ -3,21 +3,27 @@
         {{ __('Posts') }}
     </x-slot>
 
-    <table class="border-collapse table-auto w-full text-sm mb-4">
-        <thead>
-            <tr class="border-b border-gray-300">
-                <th class="p-4 text-left">{{ __('ID') }}</th>
-                <th class="p-4 text-left">{{ __('Title') }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($posts as $post)
+    <div class="px-4">
+        <table class="border-collapse table-auto w-full text-sm mb-4">
+            <thead>
                 <tr class="border-b border-gray-300">
-                    <td class="p-4">{{ $post->id }}</td>
-                    <td class="p-4"><a href="{{ route('posts.show', $post->id) }}" class="hover:underline">{{ $post->title }}</a></td>
+                    <th class="p-4 text-left">{{ __('ID') }}</th>
+                    <th class="p-4 text-left">{{ __('Title') }}</th>
+                    <th class="p-4 text-left"></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($posts as $post)
+                    <tr class="border-b border-gray-300">
+                        <td class="p-4">{{ $post->id }}</td>
+                        <td class="p-4">{{ $post->title }}</td>
+                        <td class="p-4">
+                            <x-button-link-cancel :href="route('posts.show', $post->id)">{{ __('Info') }}</x-button-link-cancel>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 </x-app-layout>
