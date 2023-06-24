@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProfileController as AdminProProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,8 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     })->name('dashboard');
 
     Route::resource('posts', AdminPostController::class);
-    
+    Route::resource('users', AdminUserController::class);
+
     Route::get('/profile', [AdminProProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [AdminProProfileController::class, 'destroy'])->name('profile.destroy');
