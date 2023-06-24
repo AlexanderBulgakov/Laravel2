@@ -36,7 +36,7 @@ Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
 
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
-        return view('inc.admin.dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
 
     Route::resource('posts', AdminPostController::class);
