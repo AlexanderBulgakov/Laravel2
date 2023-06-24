@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProfileController as AdminProProfileController;
 use App\Http\Controllers\PostController;
@@ -41,6 +42,7 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     })->name('dashboard');
 
     Route::resource('posts', AdminPostController::class);
+    Route::resource('events', AdminEventController::class);
     Route::resource('users', AdminUserController::class);
 
     Route::get('/profile', [AdminProProfileController::class, 'edit'])->name('profile.edit');
