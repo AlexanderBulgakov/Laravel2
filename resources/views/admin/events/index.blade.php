@@ -13,7 +13,6 @@
                 <tr class="border-b border-gray-300">
                     <th class="py-4 text-left">{{ __('ID') }}</th>
                     <th class="p-4 text-left">{{ __('Title') }}</th>
-                    <th class="p-4 text-left">{{ __('Description') }}</th>
                     <th class="p-4 text-left"></th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@
                     <tr class="border-b border-gray-300">
                         <td class="py-4">{{ $event->id }}</td>
                         <td class="p-4">{{ $event->title }}</td>
-                        <td class="p-4">{{ $event->description }}</td>
                         <td class="py-4 text-right">
                             <x-button-link-cancel :href="route('events.show', $event->id)">{{ __('Info') }}</x-button-link-cancel>
                         </td>

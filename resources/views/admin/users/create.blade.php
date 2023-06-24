@@ -3,6 +3,10 @@
         {{ __('Create user') }}
     </x-slot>
 
+    <div class="p-4 flex justify-end border-b">
+        <x-button-link-cancel :href="route('users.index')">{{ __('Cancel') }}</x-button-link-cancel>
+    </div>
+
     <section class="p-4">
         <header>
             <h2 class="text-lg font-medium text-gray-900">
