@@ -11,11 +11,4 @@
     <li>
         <x-nav-sidebar-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">{{ __('Profile') }}</x-nav-sidebar-link>
     </li>
-    <li>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <x-nav-sidebar-link :href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();">{{ __('Log Out') }}</x-nav-sidebar-link>
-        </form>
-    </li>
 </ul>
