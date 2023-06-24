@@ -24,6 +24,12 @@
             </div>
 
             <div>
+                <x-input-label for="event_date" :value="__('Event Date')" />
+                <x-text-input id="event_date" name="event_date" type="text" class="mt-1 block w-full" placeholder="YYYY-MM-DD" :value="old('event_date')" required />
+                <x-input-error class="mt-2" :messages="$errors->get('event_date')" />
+            </div>
+
+            <div>
                 <x-input-label for="description" :value="__('Description (max:300)')" />
                 <x-textarea id="description" name="description" class="mt-1 block w-full" required>{{ old('description') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('description')" />

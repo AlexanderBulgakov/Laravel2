@@ -33,6 +33,7 @@ class EventController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|max:255',
+            'event_date' => 'required|date_format:Y-m-d',
             'description' => 'required|max:300',
             'body' => 'required',
         ]);
@@ -65,6 +66,7 @@ class EventController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|max:255',
+            'event_date' => 'required|date_format:Y-m-d',
             'description' => 'required|max:300',
             'body' => 'required',
         ]);
