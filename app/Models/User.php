@@ -12,6 +12,26 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_ADMINISTRATOR = 1;
+    const ROLE_EVENT_EDITOR = 2;
+    const ROLE_SUBSCRIBER = 3;
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_ADMINISTRATOR => ['admin' => 'Administrator'],
+            self::ROLE_EVENT_EDITOR => ['event.editor' => 'Event Editor'],
+            self::ROLE_SUBSCRIBER => ['subscriber' => 'Subscriber'],
+        ];
+    }
+
+    public function hasRole(string $checkRole)
+    {
+        $roles = $this->getRoles();
+
+        return isset($roles[$this->role][$checkRole]);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -45,9 +45,9 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::resource('posts', AdminPostController::class);
-    Route::resource('events', AdminEventController::class);
-    Route::resource('users', AdminUserController::class);
+    Route::resource('posts', AdminPostController::class)->middleware('role:admin');
+    Route::resource('events', AdminEventController::class)->middleware('role:event.editor,admin');
+    Route::resource('users', AdminUserController::class)->middleware('role:admin');
 
     Route::get('/profile', [AdminProProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProProfileController::class, 'update'])->name('profile.update');
