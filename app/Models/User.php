@@ -32,6 +32,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return isset($roles[$this->role][$checkRole]);
     }
 
+    public function getRoleKey(){
+        $roles = $this->getRoles();
+
+        if(isset($roles[$this->role])){
+            $keys = array_keys($roles[$this->role]);
+            
+            return array_shift($keys);
+        }
+
+        return '';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
