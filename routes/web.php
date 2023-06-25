@@ -33,6 +33,10 @@ Route::get('/about', function () {
 })->name('about');
 //Route::view('/about', 'about')->name('about');
 
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
+
 Route::get('/blog', [PostController::class, 'index'])->name('blog');;
 Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
 

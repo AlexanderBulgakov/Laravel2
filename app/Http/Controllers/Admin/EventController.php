@@ -35,7 +35,6 @@ class EventController extends Controller
             'title' => 'required|max:255',
             'event_date' => 'required|date_format:Y-m-d',
             'description' => 'required|max:300',
-            'body' => 'required',
         ]);
 
         Event::create($data);
@@ -68,7 +67,6 @@ class EventController extends Controller
             'title' => 'required|max:255',
             'event_date' => 'required|date_format:Y-m-d',
             'description' => 'required|max:300',
-            'body' => 'required',
         ]);
 
         $event->update($data);

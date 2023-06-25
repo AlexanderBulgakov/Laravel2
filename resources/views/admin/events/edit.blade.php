@@ -36,12 +36,6 @@
                 <x-input-error class="mt-2" :messages="$errors->get('description')" />
             </div>
 
-            <div>
-                <x-input-label for="body" :value="__('Body')" />
-                <x-textarea id="body" name="body" class="mt-1 block w-full" required>{{ $event->body }}</x-textarea>
-                <x-input-error class="mt-2" :messages="$errors->get('body')" />
-            </div>
-
             <div class="flex items-center gap-4">
                 <x-primary-button>{{ __('Update') }}</x-primary-button>
             </div>

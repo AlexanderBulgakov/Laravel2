@@ -29,16 +29,20 @@
                 <x-input-error class="mt-2" :messages="$errors->get('event_date')" />
             </div>
 
-            <div>
-                <x-input-label for="description" :value="__('Description (max:300)')" />
-                <x-textarea id="description" name="description" class="mt-1 block w-full" required>{{ old('description') }}</x-textarea>
+            <div x-data="{
+                    description: '',
+                    limit: $el.dataset.limit,
+                    get remaining() {
+                        return this.limit - this.description.length
+                    }
+                }" data-limit="300"
+            >
+                <x-input-label for="description" :value="__('Description')" />
+                <p class="block font-medium text-sm text-gray-500">
+                    {{ __('You have') }} <span x-text="remaining" class="text-orange-500"></span> {{ __('characters remaining.') }}
+                </p>
+                <x-textarea id="description" x-model="description" name="description" class="mt-1 block w-full" required>{{ old('description') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('description')" />
-            </div>
-
-            <div>
-                <x-input-label for="body" :value="__('Body')" />
-                <x-textarea id="body" name="body" class="mt-1 block w-full" required>{{ old('body') }}</x-textarea>
-                <x-input-error class="mt-2" :messages="$errors->get('body')" />
             </div>
 
             <div class="flex items-center gap-4">
