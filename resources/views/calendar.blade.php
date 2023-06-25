@@ -48,11 +48,10 @@
                 'December'
             ],
             
-            initCalendar(url){
-                fetch(url)
+            initCalendar(){
+                fetch($el.dataset.url)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response);
                     this.events = response.data;
                 });
 
@@ -135,7 +134,7 @@
                 this.modalDate = selectedEvent.event_date;
                 this.modalDescription = selectedEvent.event_description;
             }
-        }" x-init="initCalendar(`{{ route("api.events") }}`)" x-cloak>
+        }" x-init="initCalendar" data-url="{{ route('api.events') }}" x-cloak>
         <div>
             <div class="flex items-center justify-between py-2 px-6">
                 <div>
@@ -219,5 +218,5 @@
             </div>
         </div>
     </div>
-
+    
 </x-guest-layout>
