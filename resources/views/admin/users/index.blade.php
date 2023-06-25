@@ -14,6 +14,7 @@
                     <th class="py-4 text-left">{{ __('ID') }}</th>
                     <th class="p-4 text-left">{{ __('Name') }}</th>
                     <th class="p-4 text-left">{{ __('Email') }}</th>
+                    <th class="p-4 text-left">{{ __('Role') }}</th>
                     <th class="p-4 text-left"></th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                         <td class="py-4">{{ $user->id }}</td>
                         <td class="p-4">{{ $user->name }}</td>
                         <td class="p-4">{{ $user->email }}</td>
+                        <td class="p-4">{{ is_null( $user->role ) ? '---' : $user->getRoles()[$user->role] }}</td>
                         <td class="py-4 text-right">
                             <x-button-link-cancel :href="route('users.show', $user->id)">{{ __('Info') }}</x-button-link-cancel>
                         </td>

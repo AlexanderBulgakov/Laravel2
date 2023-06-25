@@ -26,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = User::getRoles();
+
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -35,6 +37,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'role' => ['required', 'string', 'max:15'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', Rules\Password::defaults()],
@@ -60,7 +63,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = User::getRoles();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -69,6 +74,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->validate([
+            'role' => ['required', 'string', 'max:15'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
             'password' => ['nullable', Rules\Password::defaults()],

@@ -12,36 +12,27 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    const ROLE_ADMINISTRATOR = 1;
-    const ROLE_EVENT_EDITOR = 2;
-    const ROLE_SUBSCRIBER = 3;
+    const ROLE_ADMINISTRATOR = 'admin';
+    const ROLE_EVENT_EDITOR = 'event.editor';
+    const ROLE_SUBSCRIBER = 'subscriber';
 
     public static function getRoles()
     {
         return [
-            self::ROLE_ADMINISTRATOR => ['admin' => 'Administrator'],
-            self::ROLE_EVENT_EDITOR => ['event.editor' => 'Event Editor'],
-            self::ROLE_SUBSCRIBER => ['subscriber' => 'Subscriber'],
+            self::ROLE_ADMINISTRATOR => 'Administrator',
+            self::ROLE_EVENT_EDITOR => 'Event Editor',
+            self::ROLE_SUBSCRIBER => 'Subscriber',
         ];
     }
 
-    public function hasRole(string $checkRole)
+    public function hasRole(string $role)
     {
-        $roles = $this->getRoles();
-
-        return isset($roles[$this->role][$checkRole]);
+        return $this->role === $role;
     }
 
-    public function getRoleKey(){
-        $roles = $this->getRoles();
-
-        if(isset($roles[$this->role])){
-            $keys = array_keys($roles[$this->role]);
-            
-            return array_shift($keys);
-        }
-
-        return '';
+    public function getRoleKey()
+    {
+        return $this->role;
     }
 
     /**
@@ -50,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
+        'role',
         'name',
         'email',
         'password',

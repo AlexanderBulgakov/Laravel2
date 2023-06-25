@@ -19,6 +19,17 @@
             @method('PATCH')
 
             <div>
+                <x-input-label for="role" :value="__('Role')" />
+                <x-select id="role" name="role">
+                    <option value="" selected>---</option>
+                    @foreach($roles as $slug => $name)
+                        <option {{ $slug == $user->role ? 'selected' : '' }} value="{{ $slug }}">{{ $name }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error class="mt-2" :messages="$errors->get('role')" />
+            </div>
+
+            <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="$user->name" required autofocus />
                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
