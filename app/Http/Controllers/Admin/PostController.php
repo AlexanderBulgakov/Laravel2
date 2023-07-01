@@ -32,12 +32,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'image' => 'required|image',
             'title' => 'required|max:255',
             'description' => 'required|max:300',
             'body' => 'required',
         ]);
 
-        Post::create($data);
+        unset($data['image']);
+
+        $post = Post::create($data);
+
+        $post->addMediaFromRequest('image')
+            ->toMediaCollection('blog-images');
         
         return redirect()->route('posts.index');
     }
@@ -64,11 +70,20 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->validate([
+            'image' => 'nullable|image',
             'title' => 'required|max:255',
             'description' => 'required|max:300',
             'body' => 'required',
+            'image-upd' => 'nullable'
         ]);
 
+        if(isset($data['image'])) {
+            unset($data['image']);
+            
+            $post->addMediaFromRequest('image')
+            ->toMediaCollection('blog-images');
+        }
+        
         $post->update($data);
 
         return redirect()->route('posts.show', $post->slug);

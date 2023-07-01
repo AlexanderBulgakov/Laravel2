@@ -12,6 +12,9 @@
     </div>
 
     <div class="px-4">
+        @if ($post->hasMedia('blog-images' ))
+            <img src="{{$post->getFirstMediaUrl('blog-images', 'blog-preview')}}" class="mt-2 block mx-auto rounded">
+        @endif
         <h1 class="block text-3xl font-bold my-4">{{ $post->title }}</h1>
         <div class="mb-4 text-sm bg-gray-500 text-white p-2">{{ $post->slug }}</div>
         <div class="mb-4 text-sm">{{ $post->description }}</div>
