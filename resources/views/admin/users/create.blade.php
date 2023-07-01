@@ -14,7 +14,13 @@
             </h2>
         </header>
 
-        <form method="POST" action="{{ route('users.store') }}" class="mt-6 space-y-6">
+        <form x-data="{
+                    loadingAnimation: 0,
+
+                    enableLoadingAnimation() {
+                        this.loadingAnimation = 1;
+                    }
+                }" @submit="enableLoadingAnimation" method="POST" action="{{ route('users.store') }}" class="mt-6 space-y-6">
             @csrf
 
             <div>
@@ -47,7 +53,12 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <x-primary-button>{{ __('Create') }}</x-primary-button>
+                <template x-if="loadingAnimation">
+                    <x-load-animation></x-load-animation>
+                </template>
+                <template x-if="!loadingAnimation">
+                    <x-primary-button>{{ __('Create') }}</x-primary-button>
+                </template>
             </div>
         </form>
     </section>
