@@ -22,7 +22,7 @@
                         <td class="py-4">{{ $post->id }}</td>
                         <td class="p-4">{{ $post->title }}</td>
                         <td class="py-4 text-right">
-                            <x-button-link-cancel :href="route('posts.show', $post->id)">{{ __('Info') }}</x-button-link-cancel>
+                            <x-button-link-cancel :href="route('posts.show', $post->slug)">{{ __('Info') }}</x-button-link-cancel>
                         </td>
                     </tr>
                 @endforeach

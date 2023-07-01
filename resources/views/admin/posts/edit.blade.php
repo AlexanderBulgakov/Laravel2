@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="p-4 flex justify-end border-b">
-        <x-button-link-cancel :href="route('posts.show', $post->id)">{{ __('Cancel') }}</x-button-link-cancel>
+        <x-button-link-cancel :href="route('posts.show', $post->slug)">{{ __('Cancel') }}</x-button-link-cancel>
     </div>
 
     <section class="p-4">
@@ -14,7 +14,7 @@
             </h2>
         </header>
 
-        <form action="{{ route('posts.update', $post->id) }}" method="POST" class="mt-6 space-y-6">
+        <form action="{{ route('posts.update', $post->slug) }}" method="POST" class="mt-6 space-y-6">
             @csrf
             @method('PATCH')
 
