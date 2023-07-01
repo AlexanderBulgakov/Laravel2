@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StorePostRequest;
+use App\Http\Requests\Admin\UpdatePostRequest;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -29,14 +30,9 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $data = $request->validate([
-            'image' => 'required|image',
-            'title' => 'required|max:255',
-            'description' => 'required|max:300',
-            'body' => 'required',
-        ]);
+        $data = $request->validated();
 
         unset($data['image']);
 
@@ -67,19 +63,13 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $data = $request->validate([
-            'image' => 'nullable|image',
-            'title' => 'required|max:255',
-            'description' => 'required|max:300',
-            'body' => 'required',
-            'image-upd' => 'nullable'
-        ]);
+        $data = $request->validated();
 
         if(isset($data['image'])) {
             unset($data['image']);
-            
+
             $post->addMediaFromRequest('image')
             ->toMediaCollection('blog-images');
         }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreEventRequest;
+use App\Http\Requests\Admin\UpdateEventRequest;
 use App\Models\Event;
 
 class EventController extends Controller
@@ -29,13 +30,9 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required|max:255',
-            'event_date' => 'required|date_format:Y-m-d',
-            'description' => 'required|max:300',
-        ]);
+        $data = $request->validated();
 
         Event::create($data);
         
@@ -61,13 +58,9 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event)
     {
-        $data = $request->validate([
-            'title' => 'required|max:255',
-            'event_date' => 'required|date_format:Y-m-d',
-            'description' => 'required|max:300',
-        ]);
+        $data = $request->validated();
 
         $event->update($data);
 
