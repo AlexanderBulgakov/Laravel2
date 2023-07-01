@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('viewByRole', function ($user, ... $roles) {
-            return in_array($user->getRoleKey(), $roles);
+            return in_array($user->role, $roles);
         });
     }
 }

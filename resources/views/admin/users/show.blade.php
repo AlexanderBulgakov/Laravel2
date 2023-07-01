@@ -14,7 +14,7 @@
     <div class="px-4">
         <h1 class="block text-3xl font-bold my-4">{{ $user->name }}</h1>
         <div class="mb-4">{{ $user->email }}</div>
-        <div class="mb-4 font-bold">{{ is_null( $user->role ) ? '---' : $user->getRoles()[$user->role] }}</div>
+        <div class="mb-4 font-bold">{{ $user->getRoles()[$user->role] }}</div>
     </div>
 
     <form id="user-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:none;">

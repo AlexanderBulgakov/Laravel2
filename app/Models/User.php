@@ -25,14 +25,14 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    public static function getDefaulrRoleKey(): string
+    {
+        return self::ROLE_SUBSCRIBER;
+    }
+
     public function hasRole(string $role): bool
     {
         return $this->role === $role;
-    }
-
-    public function getRoleKey(): string
-    {
-        return $this->role;
     }
 
     /**
