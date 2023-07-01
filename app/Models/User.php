@@ -16,6 +16,11 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_EVENT_EDITOR = 'event.editor';
     const ROLE_SUBSCRIBER = 'subscriber';
 
+    /**
+     * Get all roles.
+     *
+     * @return array
+     */
     public static function getRoles(): array
     {
         return [
@@ -25,11 +30,21 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    /**
+     * Get default role.
+     *
+     * @return string
+     */
     public static function getDefaulrRoleKey(): string
     {
         return self::ROLE_SUBSCRIBER;
     }
 
+    /**
+     * Check user role.
+     *
+     * @return bool
+     */
     public function hasRole(string $role): bool
     {
         return $this->role === $role;
