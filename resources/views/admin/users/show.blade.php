@@ -11,10 +11,12 @@
         </x-danger-button>
     </div>
 
-    <div class="px-4">
-        <h1 class="block text-3xl font-bold my-4">{{ $user->name }}</h1>
-        <div class="mb-4">{{ $user->email }}</div>
-        <div class="mb-4 font-bold">{{ $user->getRoles()[$user->role] }}</div>
+    <div class="px-4 my-4">
+        <div class="mb-4"><span class="font-bold">{{ __('First name') }} : </span>{{ $user->first_name }}</div>
+        <div class="mb-4"><span class="font-bold">{{ __('Last name') }} : </span>{{ $user->last_name }}</div>
+        <div class="mb-4"><span class="font-bold">{{ __('Display name') }} : </span>{{ $user->display_name }}</div>
+        <div class="mb-4"><span class="font-bold">{{ __('Email') }} : </span>{{ $user->email }}</div>
+        <div class="mb-4"><span class="font-bold">{{ __('Role') }} : </span>{{ $user->getRoles()[$user->role] }}</div>
     </div>
 
     <form id="user-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:none;">

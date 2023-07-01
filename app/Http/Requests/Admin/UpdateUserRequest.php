@@ -26,7 +26,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'role' => ['required', 'string', 'max:15'],
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'display_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(request()->route()->user->id)],
             'password' => ['nullable', Rules\Password::defaults()],
         ];
