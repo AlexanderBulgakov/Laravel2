@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_EVENT_EDITOR = 'event.editor';
     const ROLE_SUBSCRIBER = 'subscriber';
 
-    public static function getRoles()
+    public static function getRoles(): array
     {
         return [
             self::ROLE_ADMINISTRATOR => 'Administrator',
@@ -25,12 +25,12 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function hasRole(string $role)
+    public function hasRole(string $role): bool
     {
         return $this->role === $role;
     }
 
-    public function getRoleKey()
+    public function getRoleKey(): string
     {
         return $this->role;
     }
