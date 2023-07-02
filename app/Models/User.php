@@ -7,10 +7,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
+
+    const ROLE_ADMINISTRATOR = 'admin';
+    const ROLE_EVENT_EDITOR = 'event.editor';
+    const ROLE_SUBSCRIBER = 'subscriber';
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'first_name',
         'last_name',
         'display_name',
+        'biography',
         'email',
         'password',
     ];
@@ -45,10 +54,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    const ROLE_ADMINISTRATOR = 'admin';
-    const ROLE_EVENT_EDITOR = 'event.editor';
-    const ROLE_SUBSCRIBER = 'subscriber';
 
     /**
      * Get all roles.
@@ -82,6 +87,30 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasRole(string $role): bool
     {
         return $this->role === $role;
+    }
+
+    /**
+     * Add image collections.
+     *
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('avatars')
+            ->singleFile();
+    }
+
+    /**
+     * Create thumbnails.
+     *
+     * @return void
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('avatar')
+            ->fit(Manipulations::FIT_CROP, 150, 150);
     }
 
     /**

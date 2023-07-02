@@ -13,9 +13,15 @@
         @csrf
     </form>
 
-    <form method="POST" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="POST" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
+
+        <div>
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <x-image-input id="avatar" name="avatar" :avatar="1" :value="$user->getFirstMediaUrl('avatars', 'avatar')" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
 
         <div>
             <x-input-label for="first_name" :value="__('First name')" />
@@ -57,6 +63,22 @@
                     @endif
                 </div>
             @endif
+        </div>
+        
+        <div x-data="{
+                biography: $el.dataset.biography,
+                limit: $el.dataset.limit,
+                get remaining() {
+                    return this.limit - this.biography.length
+                }
+            }" data-limit="300" data-biography="{{ $user->biography }}"
+        >
+            <x-input-label for="biography" :value="__('Biography')" />
+            <p class="block font-medium text-sm text-gray-500">
+                {{ __('You have') }} <span x-text="remaining" class="text-orange-500"></span> {{ __('characters remaining.') }}
+            </p>
+            <x-textarea id="biography" x-model="biography" name="biography" class="mt-1 block w-full"></x-textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('biography')" />
         </div>
 
         <div class="flex items-center gap-4">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -21,6 +22,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('blog-single', compact('post'));
+        $date = Carbon::parse($post->created_at);
+
+        return view('blog-single', compact('post', 'date'));
     }
 }

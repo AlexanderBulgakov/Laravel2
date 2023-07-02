@@ -25,10 +25,12 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'avatar' => ['nullable', 'image'],
             'role' => ['required', 'string', 'max:15'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'display_name' => ['required', 'string', 'max:255'],
+            'biography' => ['nullable', 'max:300'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(request()->route()->user->id)],
             'password' => ['nullable', Rules\Password::defaults()],
         ];

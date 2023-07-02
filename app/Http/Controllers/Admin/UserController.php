@@ -37,10 +37,15 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
+        unset($data['avatar']);
+
         $data['password'] = Hash::make($data['password']);
 
-        User::create($data);
+        $user = User::create($data);
         
+        $user->addMediaFromRequest('avatar')
+            ->toMediaCollection('avatars');
+
         return redirect()->route('users.index');
     }
 
@@ -77,6 +82,13 @@ class UserController extends Controller
             unset($data['password']);
         }else{
             $data['password'] = Hash::make($data['password']);
+        }
+
+        if(isset($data['avatar'])) {
+            unset($data['avatar']);
+
+            $user->addMediaFromRequest('avatar')
+                ->toMediaCollection('avatars');
         }
 
         $user->update($data);
