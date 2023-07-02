@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePostRequest;
 use App\Http\Requests\Admin\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -24,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $users = User::all();
+
+        return view('admin.posts.create', compact('users'));
     }
 
     /**
@@ -57,7 +60,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $users = User::all();
+
+        return view('admin.posts.edit', compact('post', 'users'));
     }
 
     /**

@@ -58,6 +58,16 @@
                 <x-input-error class="mt-2" :messages="$errors->get('body')" />
             </div>
 
+            <div>
+                <x-input-label for="user_id" :value="__('Author')" />
+                <x-select id="user_id" name="user_id">
+                    @foreach($users as $user)
+                        <option {{ $user->id == old('user_id', $post->user->id) ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->display_name }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error class="mt-2" :messages="$errors->get('user_id')" />
+            </div>
+
             <div class="flex items-center gap-4">
                 <template x-if="loadingAnimation">
                     <x-load-animation></x-load-animation>

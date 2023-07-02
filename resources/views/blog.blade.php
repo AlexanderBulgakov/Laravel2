@@ -13,7 +13,7 @@
                     @endif
                     <div class="pt-2 space-y-2">
                         <h2 class="text-xl">{{ $post->title }}</h2>
-                        <span class="text-xs dark:text-gray-400">TODO</span>
+                        <span class="text-xs dark:text-gray-400">{{ __('Author') }} : {{ $post->user->display_name }}</span>
                         <p>{{ $post->description }}</p>
                     </div>
                 </a>

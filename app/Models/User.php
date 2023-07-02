@@ -12,6 +12,40 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'role',
+        'first_name',
+        'last_name',
+        'display_name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
     const ROLE_ADMINISTRATOR = 'admin';
     const ROLE_EVENT_EDITOR = 'event.editor';
     const ROLE_SUBSCRIBER = 'subscriber';
@@ -51,36 +85,12 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * The attributes that are mass assignable.
+     * Relationship. Get posts of user
      *
-     * @var array<int, string>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected $fillable = [
-        'role',
-        'first_name',
-        'last_name',
-        'display_name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'id');
+    }
 }

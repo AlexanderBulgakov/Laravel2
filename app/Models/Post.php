@@ -19,6 +19,11 @@ class Post extends Model  implements HasMedia
         'title',
         'description',
         'body',
+        'user_id',
+    ];
+
+    protected $with = [
+        'user',
     ];
 
     /**
@@ -64,7 +69,6 @@ class Post extends Model  implements HasMedia
      *
      * @return void
      */
-
     public function registerMediaConversions(Media $media = null): void
     {
         $this
@@ -74,5 +78,18 @@ class Post extends Model  implements HasMedia
         $this
             ->addMediaConversion('blog-thumbnail')
             ->fit(Manipulations::FIT_CROP, 150, 150);
+    }
+
+    /**
+     * Relationship. Get user for the post
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
+            'display_name' => '---',
+            'id' => 0,
+        ]);
     }
 }

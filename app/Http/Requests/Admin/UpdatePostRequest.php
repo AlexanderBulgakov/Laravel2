@@ -26,7 +26,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'required|max:255',
             'description' => 'required|max:300',
             'body' => 'required',
-            'image-upd' => 'nullable'
+            'user_id' => 'required'
         ];
     }
 }
