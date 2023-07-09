@@ -6,7 +6,7 @@
 - `composer install`
 - `cp .env.example .env`
 - `php artisan key:generate`
-- add or change settings in **.env** file (for example) 
+- change or add settings in **.env** file (for example) 
   - APP_NAME="Simple Blog"
   - DB_CONNECTION=mysql
   - DB_HOST=mysql
@@ -30,8 +30,6 @@
   - demo@test.test
   - 1234567890
 - go to http://localhost:8025/ for verification email
-
-
 - to stop the container, run `./vendor/bin/sail stop`
 - to remove the container, run `./vendor/bin/sail down`
 ## Laravel License
