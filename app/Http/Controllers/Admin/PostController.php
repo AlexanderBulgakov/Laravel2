@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePostRequest;
 use App\Http\Requests\Admin\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Category;
 use App\Models\User;
 
 class PostController extends Controller
@@ -25,9 +26,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         $users = User::all();
 
-        return view('admin.posts.create', compact('users'));
+        return view('admin.posts.create', compact('users', 'categories'));
     }
 
     /**
@@ -60,9 +62,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $categories = Category::all();
         $users = User::all();
 
-        return view('admin.posts.edit', compact('post', 'users'));
+        return view('admin.posts.edit', compact('post', 'categories', 'users'));
     }
 
     /**

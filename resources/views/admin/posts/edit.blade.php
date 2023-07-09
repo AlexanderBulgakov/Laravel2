@@ -36,6 +36,17 @@
                 <x-input-error class="mt-2" :messages="$errors->get('title')" />
             </div>
 
+            <div>
+                <x-input-label for="category_id" :value="__('Category')" />
+                <x-select id="category_id" name="category_id">
+                    <option value="">---</option>
+                    @foreach($categories as $category)
+                        <option {{ $category->id == $post->category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
+            </div>
+
             <div x-data="{
                     description: $el.dataset.description,
                     limit: $el.dataset.limit,

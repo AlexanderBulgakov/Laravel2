@@ -24,6 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'image' => 'nullable|image',
             'title' => 'required|max:255',
+            'category_id' => 'required',
             'description' => 'required|max:300',
             'body' => 'required',
             'user_id' => 'required'

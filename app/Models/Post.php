@@ -17,12 +17,14 @@ class Post extends Model implements HasMedia
 
     protected $fillable = [
         'title',
+        'category_id',
         'description',
         'body',
         'user_id',
     ];
 
     protected $with = [
+        'category',
         'user',
     ];
 
@@ -89,6 +91,19 @@ class Post extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
             'display_name' => '---',
+            'id' => 0,
+        ]);
+    }
+
+    /**
+     * Relationship. Get category for the post
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id')->withDefault([
+            'title' => '---',
             'id' => 0,
         ]);
     }
