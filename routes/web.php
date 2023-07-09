@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProfileController as AdminProProfileController;
@@ -45,7 +46,8 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::resource('posts', AdminPostController::class)->middleware('role:admin');
+    Route::resource('posts', AdminPostController::class)->middleware('role:post.editor,admin');
+    Route::resource('categories', AdminCategoryController::class)->middleware('role:post.editor,admin');
     Route::resource('events', AdminEventController::class)->middleware('role:event.editor,admin');
     Route::resource('users', AdminUserController::class)->middleware('role:admin');
 

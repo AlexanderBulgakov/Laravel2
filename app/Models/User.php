@@ -17,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
     const ROLE_ADMINISTRATOR = 'admin';
+    const ROLE_POST_EDITOR = 'post.editor';
     const ROLE_EVENT_EDITOR = 'event.editor';
     const ROLE_SUBSCRIBER = 'subscriber';
 
@@ -64,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return [
             self::ROLE_ADMINISTRATOR => 'Administrator',
+            self::ROLE_POST_EDITOR => 'Post Editor',
             self::ROLE_EVENT_EDITOR => 'Event Editor',
             self::ROLE_SUBSCRIBER => 'Subscriber',
         ];
