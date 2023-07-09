@@ -39,4 +39,14 @@ class Category extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Relationship. Get posts by category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id', 'id');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProfileController as AdminProProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,8 +39,9 @@ Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
 
-Route::get('/blog', [PostController::class, 'index'])->name('blog');;
+Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
+Route::get('/blog/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {

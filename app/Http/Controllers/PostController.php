@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
 
@@ -12,9 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->get();
+        $categories = Category::all();
+        $category_id = 0;
 
-        return view('blog', compact('posts'));
+        return view('blog', compact('posts', 'categories', 'category_id'));
     }
 
     /**
