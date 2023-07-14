@@ -9,6 +9,9 @@
         <li>
             <x-nav-sidebar-link :href="route('categories.index')" :active="request()->routeIs('categories*')">- {{ __('Categories') }}</x-nav-sidebar-link>
         </li>
+        <li>
+            <x-nav-sidebar-link :href="route('tags.index')" :active="request()->routeIs('tags*')">- {{ __('Tags') }}</x-nav-sidebar-link>
+        </li>
     @endcan
     @can('viewByRole', ['event.editor','admin'])
         <li>
