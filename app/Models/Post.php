@@ -107,4 +107,14 @@ class Post extends Model implements HasMedia
             'id' => 0,
         ]);
     }
+
+    /**
+     * Relationship. Get post tags
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+    }
 }
