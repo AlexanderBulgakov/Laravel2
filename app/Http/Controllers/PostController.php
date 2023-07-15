@@ -25,6 +25,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if( $post->status != 'publish' ) abort(404);
+
         $date = Carbon::parse($post->created_at);
 
         return view('blog-single', compact('post', 'date'));
