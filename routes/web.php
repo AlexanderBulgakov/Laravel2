@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ProfileController as AdminProProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::get('/calendar', function () {
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('/blog/{post}', [PostController::class, 'show'])->name('blog.show');
 Route::get('/blog/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
 
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');

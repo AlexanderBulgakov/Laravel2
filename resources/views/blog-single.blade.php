@@ -27,6 +27,13 @@
 
         <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
         <div class="my-4">{{ $post->body }}</div>
+        <div class="text-xs dark:text-gray-400"><strong>{{ __('Category') }} : </strong><a href="{{ route('category.show', $post->category->slug) }}" class="hover:underline">{{ $post->category->title }}</a></div>
+        <div class="text-xs dark:text-gray-400">
+            <strong>{{ __('Tags') }} : </strong>
+            @foreach($post->tags as $tag)
+                <a href="{{ route('tag.show', $tag->slug) }}" class="hover:underline">{{ $tag->title }}</a>@if ( ! $loop->last){{ ', ' }}@endif
+            @endforeach
+        </div>
     </article>
 
 </x-guest-layout>
