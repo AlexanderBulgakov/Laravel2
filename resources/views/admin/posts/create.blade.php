@@ -69,6 +69,16 @@
             </div>
 
             <div>
+                <x-input-label for="tags" :value="__('Tags')" />
+                <x-select id="tags" name="tags[]" multiple required>
+                    @foreach($tags as $tag)
+                        <option {{ ( is_array(old('tags')) && in_array($tag->id, old('tags'))) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error class="mt-2" :messages="$errors->get('tags')" />
+            </div>
+
+            <div>
                 <x-input-label for="user_id" :value="__('Author')" />
                 <x-select id="user_id" name="user_id">
                     @foreach($users as $user)
