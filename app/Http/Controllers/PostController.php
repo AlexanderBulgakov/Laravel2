@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::where('status', 'publish')->orderBy('id', 'desc')->get();
         $categories = Category::all();
         $category_id = 0;
 

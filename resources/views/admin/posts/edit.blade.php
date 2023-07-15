@@ -31,6 +31,16 @@
             </div>
 
             <div>
+                <x-input-label for="status" :value="__('Status')" />
+                <x-select id="status" name="status">
+                    @foreach($statuses as $slug => $name)
+                        <option {{ $slug == $post->status ? 'selected' : '' }} value="{{ $slug }}">{{ $name }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error class="mt-2" :messages="$errors->get('status')" />
+            </div>
+
+            <div>
                 <x-input-label for="title" :value="__('Title')" />
                 <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="$post->title" required autofocus />
                 <x-input-error class="mt-2" :messages="$errors->get('title')" />

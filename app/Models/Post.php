@@ -15,7 +15,11 @@ class Post extends Model implements HasMedia
 {
     use HasFactory, Sluggable, SluggableScopeHelpers, InteractsWithMedia;
 
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PUBLISH = 'publish';
+
     protected $fillable = [
+        'status',
         'title',
         'category_id',
         'description',
@@ -27,6 +31,19 @@ class Post extends Model implements HasMedia
         'category',
         'user',
     ];
+
+    /**
+     * Get all statuses.
+     *
+     * @return array
+     */
+    public static function getStatuses(): array
+    {
+        return [
+            self::STATUS_DRAFT => 'Draft',
+            self::STATUS_PUBLISH => 'Publish',
+        ];
+    }
 
     /**
      * Return the sluggable configuration array for this model.

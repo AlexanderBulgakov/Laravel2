@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $categories = Category::all();
-        $posts = $category->posts()->orderBy('id', 'desc')->get();
+        $posts = $category->posts()->where('status', 'publish')->orderBy('id', 'desc')->get();
         $category_id = $category->id;
 
         return view('blog', compact('posts', 'categories', 'category_id'));

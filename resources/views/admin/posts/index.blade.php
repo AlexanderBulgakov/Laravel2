@@ -13,6 +13,7 @@
                 <tr class="border-b border-gray-300">
                     <th class="py-4 text-left">{{ __('ID') }}</th>
                     <th class="p-4 text-left">{{ __('Title') }}</th>
+                    <th class="p-4 text-left">{{ __('Status') }}</th>
                     <th class="p-4 w-1 text-right">{{ __('Image') }}</th>
                     <th class="p-4 text-left"></th>
                 </tr>
@@ -22,6 +23,7 @@
                     <tr class="border-b border-gray-300">
                         <td class="py-4">{{ $post->id }}</td>
                         <td class="p-4">{{ $post->title }}</td>
+                        <td class="p-4">{{ $post->getStatuses()[$post->status] }}</td>
                         <td class="p-4 w-1 text-right">
                             @if ($post->hasMedia('blog-images' ))
                                 <img src="{{$post->getFirstMediaUrl('blog-images', 'blog-thumbnail')}}" role="presentation" class="rounded">

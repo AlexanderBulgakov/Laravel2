@@ -9,7 +9,6 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
-use App\Models\PostTag;
 
 class PostController extends Controller
 {
@@ -31,8 +30,9 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $users = User::all();
+        $statuses = Post::getStatuses();
 
-        return view('admin.posts.create', compact('users', 'categories', 'tags'));
+        return view('admin.posts.create', compact('users', 'categories', 'tags', 'statuses'));
     }
 
     /**
@@ -73,8 +73,9 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $users = User::all();
+        $statuses = Post::getStatuses();
 
-        return view('admin.posts.edit', compact('post', 'categories', 'users', 'tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'users', 'tags', 'statuses'));
     }
 
     /**
