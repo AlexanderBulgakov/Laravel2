@@ -1,3 +1,6 @@
+@props([
+    'editor' => false,
+    ])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,6 +11,10 @@
         <title>{{ $title ?? config('app.name', 'Simple Blog') }}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        @if( $editor )
+            <x-head.tinymce-config/>
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">

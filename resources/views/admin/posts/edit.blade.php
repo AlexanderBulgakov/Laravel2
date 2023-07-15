@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :editor="true">
     <x-slot:title>
         {{ __('Edit post') }}
     </x-slot>

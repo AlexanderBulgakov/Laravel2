@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :editor="true">
     <x-slot:title>
         {{ __('Create post') }}
     </x-slot>
@@ -74,7 +74,7 @@
 
             <div>
                 <x-input-label for="body" :value="__('Body')" />
-                <x-textarea id="body" name="body" class="mt-1 block w-full" required>{{ old('body') }}</x-textarea>
+                <x-textarea id="body" name="body" class="mt-1 block w-full">{{ old('body') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('body')" />
             </div>
 

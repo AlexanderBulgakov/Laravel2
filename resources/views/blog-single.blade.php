@@ -26,7 +26,7 @@
         </div>
 
         <h1 class="text-3xl font-bold mb-4">{{ $post->title }}</h1>
-        <div class="my-4">{{ $post->body }}</div>
+        <div class="my-4 space-y-6">{!! $post->body !!}</div>
         <div class="text-xs dark:text-gray-400"><strong>{{ __('Category') }} : </strong><a href="{{ route('category.show', $post->category->slug) }}" class="hover:underline">{{ $post->category->title }}</a></div>
         <div class="text-xs dark:text-gray-400">
             <strong>{{ __('Tags') }} : </strong>

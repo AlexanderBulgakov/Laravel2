@@ -21,8 +21,8 @@
         <div class="mb-4 text-sm"><strong>{{ __('Category') }} : </strong>{{ $post->category->title }}</div>
         <div class="mb-4 text-sm"><strong>{{ __('Tags') }} : </strong>{{ $post->tags->pluck('title')->implode(', ') }}</div>
         <div class="mb-4 text-sm"><strong>{{ __('Author') }} : </strong>{{ $post->user->display_name }}</div>
-        <div class="mb-4 text-sm">{{ $post->description }}</div>
-        <div class="mb-4">{{ $post->body }}</div>
+        <div class="mb-4 text-sm"><strong>{{ __('Description') }} : </strong>{{ $post->description }}</div>
+        <div class="mb-4 space-y-6">{!! $post->body !!}</div>
     </div>
 
     <form id="post-{{ $post->id }}" action="{{ route('posts.destroy', $post->slug) }}" method="POST" style="display:none;">
