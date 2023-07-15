@@ -10,6 +10,7 @@
 	</style>
 
     <div x-data="{
+            now: '',
             date: '',
             month: '',
             year: '',
@@ -57,6 +58,7 @@
 
                 let date = new Date();
 
+                this.now = date;
                 this.date = date;
                 this.month = date.getMonth();
                 this.year = date.getFullYear();
@@ -123,9 +125,9 @@
             },
 
             isToday(day){
-                return day === this.date.getDate()
-                && this.month === this.date.getMonth()
-                && this.year === this.date.getFullYear()
+                return day === this.now.getDate()
+                && this.month === this.now.getMonth()
+                && this.year === this.now.getFullYear()
             },
 
             showEvent(selectedEvent){
