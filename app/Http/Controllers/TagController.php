@@ -11,7 +11,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $posts = $tag->posts()->where('status', 'publish')->orderBy('id', 'desc')->get();
+        $posts = $tag->posts()->where('status', 'publish')->orderBy('id', 'desc')->paginate(9);
 
         return view('tag', compact('posts', 'tag'));
     }

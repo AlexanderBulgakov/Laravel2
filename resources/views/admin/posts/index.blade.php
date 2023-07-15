@@ -36,6 +36,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $posts->links() }}
     </div>
 
 </x-app-layout>

@@ -6,7 +6,7 @@
     <h1 class="block text-3xl font-bold mb-4 text-center">{{ __('Tag') }} : {{ $tag->title }}</h1>
 
     @if($posts->isNotEmpty())
-        <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-3">
             @foreach($posts as $post)
                 <a href="{{ route('blog.show', $post->slug) }}" class="w-full p-2 hover:bg-gray-100 hover:rounded sm:block">
                     @if ($post->hasMedia('blog-images' ))
@@ -21,6 +21,7 @@
                 </a>
             @endforeach
         </div>
+        {{ $posts->links() }}
     @else
         <p>{{ __('No posts available') }}</p>
     @endif
